@@ -15,8 +15,8 @@ public class TicTacToe {
     private char lastPlayer = '\0';
     private static final int SIZE = 3;
 
-    private static final String RESULT_DRAW = "The result is draw";
-    private static final String NO_WINNER = "No winner";
+    protected static final String RESULT_DRAW = "The result is draw";
+    protected static final String NO_WINNER = "No winner";
 
     private TicTacToeCollection ticTacToeCollection;
 

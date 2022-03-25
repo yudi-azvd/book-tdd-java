@@ -10,6 +10,17 @@ end-to-end application development with Java Viktor Farcic, Alex Garcia.
 Até onde sei você precisa pelo menos do [Gradle](https://gradle.org/install/)
 instalado no seu computador.
 
+- MongoDB (prefira por docker)
+
+## Testes
+
+Para executar os testes unitários (`**/*Spec.java`) rode no terminal
+
+    gradle test
+
+Testes de integração atualmente não estão funcionando. Se você quiser saber mais
+sobre isso, leia [aqui](./testes-integ.md). 
+
 ## Visual Studio Code
 
 A base desse projeto foi gerada com Intellij, mas eu não consigo largar o VSCode.
@@ -21,7 +32,7 @@ Você pode instalá-las individualmente com exceção do Maven for Java. Esse
 projeto usa Gradle
 - [Gradle Extension Pack](https://marketplace.visualstudio.com/items?itemName=richardwillis.vscode-gradle-extension-pack)
 
-Com essas extensões ativadas você pode executar os testes com
+Com essas extensões ativadas você pode executar os _todos_ testes com
 <kbd>Ctrl</kbd> + <kbd>;</kbd> <kbd>A</kbd>. 
 
 Faça <kbd>Ctrl</kbd> + <kbd>;</kbd> primeiro, solte os dois, e depois, sozinho,

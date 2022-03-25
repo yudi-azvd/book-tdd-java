@@ -14,11 +14,24 @@ dependencies {
     implementation('org.mongodb:mongo-java-driver:2.+')
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    // essa linha resolveu o erro "mockito não encontrado" quando era rodado
+    // `gradle test` no terminal
+    // 2a resposta:
+    // https://stackoverflow.com/questions/40742572/why-do-i-get-an-error-package-org-mockito-runners-does-not-exist
+    testImplementation('org.mockito:mockito-all:1.+')
     testRuntimeOnly 'org.mockito:mockito-all:1.+'
 }
 
 test {
     useJUnitPlatform()
+    include '**/*Spec.class'
+}
+
+task testInteg(type: Test) {
+    // https://www.baeldung.com/gradle-custom-task
+    group 'verification'
+    useJUnitPlatform()
+    include '**/*Integ.class'
 }
 
 apply plugin: 'jacoco'
