@@ -15,46 +15,46 @@ import org.junit.jupiter.api.Test;
  * Capítulo 6
  */
 public class TicTacToeCollectionSpec {
-  private TicTacToeCollection collection;
-  private TicTacToeBean bean;
   private MongoCollection mongoCollection;
+  private TicTacToeCollection sut;
+  private TicTacToeBean bean;
 
   @BeforeEach
   public void beforeEach() throws UnknownHostException {
-    collection = spy(new TicTacToeCollection());
+    sut = spy(new TicTacToeCollection());
     bean = new TicTacToeBean(3, 2, 1, 'Y');
     mongoCollection = mock(MongoCollection.class);
   }
 
   @Test
   public void whenInstatiatedThenMongoHasDbNameTicTacToe() {
-    assertEquals("tic-tac-toe", collection
+    assertEquals("tic-tac-toe", sut
       .getMongoCollection()
       .getDBCollection().getDB().getName());
   }
 
   @Test
   public void whenInstatiatedThenMongoCollectionHasNameGame() {
-    assertEquals("game", collection
+    assertEquals("game", sut
       .getMongoCollection().getName());
   }
 
   @Test
   public void whenSaveMoveThenInvokeMongoCollectionSave() {
-    doReturn(mongoCollection).when(collection).getMongoCollection();
+    doReturn(mongoCollection).when(sut).getMongoCollection();
 
-    collection.saveMove(bean);
+    sut.saveMove(bean);
     
     verify(mongoCollection, times(1)).save(bean);
   }
 
   @Test
   public void whenSaveMoveThenReturnTrue() {
-    doReturn(mongoCollection).when(collection).getMongoCollection();
+    doReturn(mongoCollection).when(sut).getMongoCollection();
 
-    collection.saveMove(bean);
+    sut.saveMove(bean);
     
-    assertTrue(collection.saveMove(bean));
+    assertTrue(sut.saveMove(bean));
   }
 
   @Test
@@ -63,32 +63,32 @@ public class TicTacToeCollectionSpec {
       .when(mongoCollection)
       .save(any(TicTacToeBean.class));
     
-    doReturn(mongoCollection).when(collection).getMongoCollection();
+    doReturn(mongoCollection).when(sut).getMongoCollection();
 
-    assertFalse(collection.saveMove(bean));
+    assertFalse(sut.saveMove(bean));
   }
 
   @Test
   public void whenDropThenInvokeMongoCollectionDrop() {
-    doReturn(mongoCollection).when(collection).getMongoCollection();
+    doReturn(mongoCollection).when(sut).getMongoCollection();
 
-    collection.drop();
+    sut.drop();
 
     verify(mongoCollection).drop();
   }
 
   @Test
   public void whenDropThenReturnTrue() {
-    doReturn(mongoCollection).when(collection).getMongoCollection();
+    doReturn(mongoCollection).when(sut).getMongoCollection();
 
-    assertTrue(collection.drop());
+    assertTrue(sut.drop());
   }
 
   @Test
   public void givenExceptionWhenDropThenReturnFalse() {
     doThrow(new MongoException("bla")).when(mongoCollection).drop();
-    doReturn(mongoCollection).when(collection).getMongoCollection();
+    doReturn(mongoCollection).when(sut).getMongoCollection();
 
-    assertFalse(collection.drop());
+    assertFalse(sut.drop());
   }
 }
