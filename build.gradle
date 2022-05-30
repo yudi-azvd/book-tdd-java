@@ -18,8 +18,8 @@ dependencies {
     // `gradle test` no terminal
     // 2a resposta:
     // https://stackoverflow.com/questions/40742572/why-do-i-get-an-error-package-org-mockito-runners-does-not-exist
-    testImplementation('org.mockito:mockito-all:1.+')
-    testRuntimeOnly 'org.mockito:mockito-all:1.+'
+    testImplementation('org.mockito:mockito-core:3.+')
+    testRuntimeOnly 'org.mockito:mockito-core:3.+'
 }
 
 test {
